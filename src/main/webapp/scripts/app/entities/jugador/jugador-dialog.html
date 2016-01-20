@@ -1,0 +1,74 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myJugadorLabel" translate="ligabaloncestoApp.jugador.home.createOrEditLabel">Create or edit a Jugador</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="jugador.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.nombreJugador" for="field_nombreJugador">NombreJugador</label>
+            <input type="text" class="form-control" name="nombreJugador" id="field_nombreJugador"
+                    ng-model="jugador.nombreJugador"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.apellidosJugador" for="field_apellidosJugador">ApellidosJugador</label>
+            <input type="text" class="form-control" name="apellidosJugador" id="field_apellidosJugador"
+                    ng-model="jugador.apellidosJugador"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.fechaNacimiento" for="field_fechaNacimiento">FechaNacimiento</label>
+            <input type="date" class="form-control" name="fechaNacimiento" id="field_fechaNacimiento"
+                    ng-model="jugador.fechaNacimiento"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.numeroTotalcanastas" for="field_numeroTotalcanastas">NumeroTotalcanastas</label>
+            <input type="number" class="form-control" name="numeroTotalcanastas" id="field_numeroTotalcanastas"
+                    ng-model="jugador.numeroTotalcanastas"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.numeroTotalasistencias" for="field_numeroTotalasistencias">NumeroTotalasistencias</label>
+            <input type="number" class="form-control" name="numeroTotalasistencias" id="field_numeroTotalasistencias"
+                    ng-model="jugador.numeroTotalasistencias"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.numeroTotalrebotes" for="field_numeroTotalrebotes">NumeroTotalrebotes</label>
+            <input type="number" class="form-control" name="numeroTotalrebotes" id="field_numeroTotalrebotes"
+                    ng-model="jugador.numeroTotalrebotes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="ligabaloncestoApp.jugador.posicionCampo" for="field_posicionCampo">PosicionCampo</label>
+            <input type="text" class="form-control" name="posicionCampo" id="field_posicionCampo"
+                    ng-model="jugador.posicionCampo"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="ligabaloncestoApp.jugador.equipo" for="field_equipo">equipo</label>
+            <select class="form-control" id="field_equipo" name="equipo" ng-model="jugador.equipo" ng-options="equipo as equipo.id for equipo in equipos track by equipo.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

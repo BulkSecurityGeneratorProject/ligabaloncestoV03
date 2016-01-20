@@ -1,0 +1,55 @@
+<div>
+    <h2 translate="ligabaloncestoApp.equipo.home.title">Equipos</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="equipo.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="ligabaloncestoApp.equipo.home.createLabel">Create a new Equipo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nombreEquipo"><span translate="ligabaloncestoApp.equipo.nombreEquipo">NombreEquipo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="localidad"><span translate="ligabaloncestoApp.equipo.localidad">Localidad</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaCreacion"><span translate="ligabaloncestoApp.equipo.fechaCreacion">FechaCreacion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="equipo in equipos track by equipo.id">
+                    <td><a ui-sref="equipo.detail({id:equipo.id})">{{equipo.id}}</a></td>
+                    <td>{{equipo.nombreEquipo}}</td>
+                    <td>{{equipo.localidad}}</td>
+                        <td>{{equipo.fechaCreacion | date:'mediumDate'}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="equipo.detail({id:equipo.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="equipo.edit({id:equipo.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="equipo.delete({id:equipo.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <uib-pagination class="pagination-sm" total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pagination>
+    </div>
+</div>
