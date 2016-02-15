@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table, th , td  {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+        border-radius: 5px;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="ligabaloncestoV03" ng-controller="equiposCtrl">
+    <p>Pulsa los headers para ordenar los campos</p>
+    <table>
+        <tr>
+            <th ng-click="orderByMe('nombreEquipo')">Nombre equipo</th>
+            <th ng-click="orderByMe('localidad')">Localidad</th>
+        </tr>
+
+        <tr ng-repeat="x in equipo| orderBy:mySort">
+            <td>{{ x.nombreEquipo}}</td>
+            <td>{{ x.localidad}}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app = angular.module('ligabaloncestoV03', []);
+    app.controller('equiposCtrl', function ($scope, $http) {
+        $http.get("api/equipos").then(function (response) {
+            $scope.equipo = response.data;
+        });
+        $scope.orderByMe = function (x) {
+            $scope.mySort = x;
+        }
+    });
+</script>
+
+</body>
+</html>

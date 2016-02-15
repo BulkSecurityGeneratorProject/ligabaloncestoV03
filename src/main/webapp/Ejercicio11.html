@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table, td  {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="ligabaloncestoV03" ng-controller="equiposCtrl">
+
+    <table>
+        <tr ng-repeat="x in equipo">
+            <td ng-if="$odd" style="background-color:#f1f1f1">
+                {{ x.nombreEquipo }}</td>
+            <td ng-if="$even">
+                {{ x.nombreEquipo }}</td>
+            <td ng-if="$odd" style="background-color:#f1f1f1">
+                {{ x.localidad }}</td>
+            <td ng-if="$even">
+                {{ x.localidad }}</td>
+            <td ng-if="$odd" style="background-color:#f1f1f1">
+                {{ x.fechaCreacion }}</td>
+            <td ng-if="$even">
+                {{ x.fechaCreacion }}</td>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    var app = angular.module('ligabaloncestoV03', []);
+    app.controller('equiposCtrl', function ($scope, $http) {
+        $http.get("api/equipos").then(function (response) {
+            $scope.equipo = response.data;
+        });
+    });
+</script>
+
+</body>
+</html>

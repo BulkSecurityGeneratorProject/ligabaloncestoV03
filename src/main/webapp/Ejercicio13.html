@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="LigaBaloncestoV03" ng-controller="equiposCtrl">
+    <p>Introduce una letra para filtrar:</p>
+    <p><input type="text" ng-model="filtro"></p>
+    <ul>
+        <li ng-repeat="x in equipos| filter:filtro">
+            <td> {{x.nombreEquipo}},</td>
+            <td>{{x.localidad}}</td>
+        </li>
+    </ul>
+</div>
+</div>
+<script>
+    var app = angular.module('LigaBaloncestoV03', []);
+    app.controller('equiposCtrl', function ($scope, $http) {
+        $http.get("api/equipos")
+            .then(function (response) {
+                $scope.equipos = response.data;
+            });
+    });
+</script>
+</body>
+</html>

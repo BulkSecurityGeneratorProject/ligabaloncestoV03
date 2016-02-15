@@ -43,11 +43,14 @@ public class Jugador implements Serializable {
     @Column(name = "posicion_campo")
     private String posicionCampo;
 
+    @Column(name = "pais")
+    private String pais;
+
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 
-    
+
     public Long getId() {
         return id;
     }
@@ -112,6 +115,10 @@ public class Jugador implements Serializable {
         this.posicionCampo = posicionCampo;
     }
 
+    public String getPais() {return pais;}
+
+    public void setPais (String pais) { this.pais = pais;}
+
     public Equipo getEquipo() {
         return equipo;
     }
@@ -148,6 +155,7 @@ public class Jugador implements Serializable {
             ", numeroTotalasistencias='" + numeroTotalasistencias + "'" +
             ", numeroTotalrebotes='" + numeroTotalrebotes + "'" +
             ", posicionCampo='" + posicionCampo + "'" +
+            ", pais='" + pais + "'" +
             '}';
     }
 }
